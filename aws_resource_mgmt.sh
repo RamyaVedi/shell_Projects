@@ -22,7 +22,7 @@ x=$(aws s3 ls| wc -l) # Counting no of s3 buckets
 
 if [ "$x" -eq 0 ]; # Checking x value and print the no of s3 buckets 
 then
-	echo "There is no s3 buckets"
+	echo "There is no s3 buckets" >> output_file.txt
 else 
 	echo "there are $X s3 buckets"
 fi
@@ -35,7 +35,7 @@ if [ "$no_of_ec2" -eq 0 ];
 then
 	echo "There are no ec2 instances"
 else
-	echo "There are $no_of_ec2  ec2 instances"
+	echo "There are $no_of_ec2  ec2 instances" >>  output_file.txt
 fi
 
 #list lambda
@@ -45,7 +45,7 @@ no_of_lambda=$(aws lambda list-functions --query 'Functions[].FunctionName[]' \
 
 if [ "$no_of_lambda" -eq 0 ];
 then
-	echo "There are no Lambda functions"
+	echo "There are no Lambda functions" >>  output_file.txt
 else
 	echo "There are $no_of_lambda Lambda functions"
 fi
@@ -57,7 +57,7 @@ no_of_IAM_Users=$(aws iam list-users --query 'Users[].UserName[]' \
 
 if [ "$no_of_IAM_Users" -eq 0 ];
 then
-	echo "There is no IAM Users"
+	echo "There is no IAM Users" >>  output_file.txt
 else
 	echo "There are $no_of_IAM_Users IAM Users"
 fi
